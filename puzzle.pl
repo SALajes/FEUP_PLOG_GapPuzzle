@@ -15,7 +15,6 @@ flatten([L|Ls], FlatL) :-
 flatten(L, [L]).
 
 restrict([], _, _).
-
 restrict(Board, 1, Size) :-
   Zeros is Size - 2,
   Ones is 2,
@@ -24,14 +23,19 @@ restrict(Board, 1, Size) :-
   domain(Row, 0, 1),
   global_cardinality(Row, [0-Zeros, 1-Ones]),
   element(I1, Row, 1), element(I2, Row, 1),
+  I1 #\= I2,
   abs(I1 - I2) #> 1,
   element(I3, NextRow, 1), element(I4, NextRow, 1),
+  I3 #\= I4,
   abs(I1 - I3) #> 2,
   abs(I1 - I4) #> 2,
   abs(I2 - I3) #> 2,
   abs(I2 - I4) #> 2,
   restrict(Board, 2, Size).
-
+% I1 and I2 are the indexes of the filled cells in the 
+% previous row.
+% I5 and I6 are the indexes of the filled cells in the 
+% next row.
 restrict(Board, Size, Size) :-
   Zeros is Size - 2,
   Ones is 2,
@@ -41,13 +45,14 @@ restrict(Board, Size, Size) :-
   domain(Row, 0, 1),
   global_cardinality(Row, [0-Zeros, 1-Ones]),
   element(I3, Row, 1), element(I4, Row, 1),
+  I3 #\= I4,
   abs(I3 - I4) #> 1,
   element(I1, PrevRow, 1), element(I2, PrevRow, 1),
+  I1 #\= I2,
   abs(I3 - I1) #> 2,
   abs(I3 - I2) #> 2,
   abs(I4 - I1) #> 2,
   abs(I4 - I2) #> 2.
-
 restrict(Board, Index, Size) :-
   Index > 1, Index < Size,
   Zeros is Size - 2,
@@ -60,13 +65,16 @@ restrict(Board, Index, Size) :-
   domain(Row, 0, 1), 
   global_cardinality(Row, [0-Zeros, 1-Ones]),
   element(I3, Row, 1), element(I4, Row, 1),
+  I3 #\= I4,
   abs(I3 - I4) #> 1,
   element(I1, PrevRow, 1), element(I2, PrevRow, 1),
+  I1 #\= I2,
   abs(I3 - I1) #> 2,
   abs(I3 - I2) #> 2,
   abs(I4 - I1) #> 2,
   abs(I4 - I2) #> 2,
   element(I5, NextRow, 1), element(I6, NextRow, 1),
+  I5 #\= I6,
   abs(I3 - I5) #> 2,
   abs(I3 - I6) #> 2,
   abs(I4 - I5) #> 2,
