@@ -93,7 +93,7 @@ puzzle :-
            [H1, H2, H3, H4, H5, H6, H7, H8, H9],
            [I1, I2, I3, I4, I5, I6, I7, I8, I9]],
   restrict(Board, 1, 9),
-  % transpose(Board, NewBoard),
+  transpose(Board, NewBoard),
   restrict(NewBoard, 1, 9),
   labeling([], 
     [A1, A2, A3, A4, A5, A6, A7, A8, A9,
