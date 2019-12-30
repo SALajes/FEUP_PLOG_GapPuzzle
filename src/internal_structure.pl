@@ -11,11 +11,11 @@
 % ]
 init_board(Board, Dimensions):-
     length(Board, Dimensions),
-    maplist(length(Board, Dimensions)).
+    maplist(length(Board, Dimensions), Board).
 
 %restrictions internal structure
 %Restrictions = [RowRestrictions, ColumnRestrictions]
 %[[[LineNumber, GapNumber], [LineNumber2, GapNumber2]],[[ColumnNumber, GapNumber], [ColumnNumber2, GapNumber2]]]
-init_restrictions(Dimensions, BoardRestrictions):-
-    random(Line, 1, Dimensions),
-    random(Column, 1, Dimensions),
+% init_restrictions(Dimensions, BoardRestrictions):-
+%     random(Line, 1, Dimensions),
+%     random(Column, 1, Dimensions),
