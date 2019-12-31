@@ -11,7 +11,7 @@
 % ]
 init_board(Board, Dimensions):-
     length(Board, Dimensions),
-    maplist(length(Board, Dimensions), Board).
+    maplist(same_length(Board), Board).
 
 %restrictions internal structure
 %Restrictions = [RowRestrictions, ColumnRestrictions]
