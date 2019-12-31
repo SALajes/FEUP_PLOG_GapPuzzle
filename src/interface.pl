@@ -34,8 +34,6 @@ valid_restrictions(Input):-
 valid_dimension(Input):-
     print_invalid_input().
 
-
-
 start():-
     process_dimensions(Dimensions),
     process_restrictions(Board_Restrictions),
