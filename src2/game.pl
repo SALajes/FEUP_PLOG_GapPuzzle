@@ -39,7 +39,8 @@ valid_input(_):-
 %---------ask board restrictions-----------
 ask_restrictions(Dimension, [H|T]):-
     valid_line_restrictions(row, Dimension, H),
-    valid_line_restrictions(column, Dimension, T).
+    valid_line_restrictions(column, Dimension, Aux),
+    transform(Aux, T).
 
 valid_line_restrictions(Line, Dimension, List):-
     repeat,
@@ -71,7 +72,10 @@ write_message(column):-
 generate_restrictions(Dimension, [H|T]) :-
     number_of_restrictions(OnRow, OnColumn, Dimension),
     generate(OnRow, Dimension, [], [], H),
-    generate(OnColumn, Dimension, [], [], T).
+    generate(OnColumn, Dimension, [], [], Aux),
+    transform(Aux, T).
+
+transform(Aux, [Aux]).
 
 %get number of restrictions
 number_of_restrictions(OnRow, OnColumn, Dimension):-
@@ -146,5 +150,7 @@ print_details(Dimension, [H|T]):-
 start:-
     menu(Value, Dimension),
     option(Value, Variables, Cardinality, Dimension, Restrictions),
-    print_details(Dimension, Restrictions).
-    solver(Variables, Dimension, Restrictions, Cardinality).
+    print_details(Dimension, Restrictions),
+   % solver(Variables, Dimension, Restrictions, Cardinality),
+    write(Restrictions),
+    !.

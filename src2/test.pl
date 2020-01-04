@@ -32,15 +32,17 @@ constrain([V1, V2, V3, V4|T]) :-
     constrain([V3, V4|T]).
 
 %solver(Variables, Size, Restrictions, Cardinality):-
-test(Variables, Size) :-
-    Restrictions = [[[6,3]],[[1,4]]],
+test(Variables) :-
+    Size = 9,
+    Restrictions = [[[6,4]],[[1,4]]],
     NumVariables is Size*2,
     length(Variables, NumVariables),
     domain(Variables, 1, 9),
-    global_cardinality(Variables, [1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2, 8-2, 9-2]),
+    Cardinality = [1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2, 8-2, 9-2],
+    global_cardinality(Variables, Cardinality),
     
     element(11, Variables, V11), element(12, Variables, V12),
-    abs(V11 - V12) #= 4,
+    abs(V11 - V12) #= 5,
 
     element(IX, Variables, 1),
     element(IY, Variables, 1),
