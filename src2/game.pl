@@ -2,7 +2,7 @@
 :- use_module(library(between)).
 :- use_module(library(lists)).
 
-:- include('test.pl').
+:- include('solver.pl').
 
 
 %--------process input---------
@@ -150,6 +150,6 @@ print_details(Dimension, [H|T]):-
 start:-
     menu(Value, Dimension),
     option(Value, Variables, Cardinality, Dimension, Restrictions),
-    print_details(Dimension, Restrictions), 
+    print_details(Dimension, Restrictions),
     !,
     solver(Variables, Dimension, Restrictions, Cardinality).
