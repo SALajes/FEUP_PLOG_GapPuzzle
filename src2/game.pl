@@ -150,7 +150,6 @@ print_details(Dimension, [H|T]):-
 start:-
     menu(Value, Dimension),
     option(Value, Variables, Cardinality, Dimension, Restrictions),
-    print_details(Dimension, Restrictions),
-   % solver(Variables, Dimension, Restrictions, Cardinality),
-    write(Restrictions),
-    !.
+    print_details(Dimension, Restrictions), 
+    !,
+    solver(Variables, Dimension, Restrictions, Cardinality).
